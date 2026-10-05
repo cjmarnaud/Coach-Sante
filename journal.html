@@ -102,20 +102,70 @@ max="10"
 value="5"
 oninput="document.getElementById('valSommeil').innerText=this.value">
 
-<label>⚡ Énergie au réveil (1 à 10)</label>
-<input type="range" id="energie" min="1" max="10" value="5">
+<label>
+⚡ Énergie au réveil :
+<span id="valEnergie">5</span>/10
+</label>
 
-<label>😴 Fatigue du soir (1 à 10)</label>
-<input type="range" id="fatigue" min="1" max="10" value="5">
+<input
+type="range"
+id="energie"
+min="1"
+max="10"
+value="5"
+oninput="document.getElementById('valEnergie').innerText=this.value">
 
-<label>😊 Humeur (1 à 10)</label>
-<input type="range" id="humeur" min="1" max="10" value="5">
+<label>
+😴 Fatigue du soir :
+<span id="valFatigue">5</span>/10
+</label>
 
-<label>😰 Stress (1 à 10)</label>
-<input type="range" id="stress" min="1" max="10" value="5">
+<input
+type="range"
+id="fatigue"
+min="1"
+max="10"
+value="5"
+oninput="document.getElementById('valFatigue').innerText=this.value">
 
-<label>🦴 Douleur du dos (0 à 10)</label>
-<input type="range" id="dos" min="0" max="10" value="0">
+<label>
+😊 Humeur :
+<span id="valHumeur">5</span>/10
+</label>
+
+<input
+type="range"
+id="humeur"
+min="1"
+max="10"
+value="5"
+oninput="document.getElementById('valHumeur').innerText=this.value">
+
+<label>
+😰 Stress :
+<span id="valStress">5</span>/10
+</label>
+
+<input
+type="range"
+id="stress"
+min="1"
+max="10"
+value="5"
+oninput="document.getElementById('valStress').innerText=this.value">
+
+<label>
+🦴 Douleur du dos :
+<span id="valDos">0</span>/10
+</label>
+
+<input
+type="range"
+id="dos"
+min="0"
+max="10"
+value="0"
+oninput="document.getElementById('valDos').innerText=this.value">
 
 <label>🚗 Heures de conduite</label>
 <input type="number" id="conduite" step="0.5">
