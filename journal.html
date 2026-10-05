@@ -1,4 +1,154 @@
 <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coach Santé Cyrille</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:20px;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    color:white;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:15px;
+    backdrop-filter:blur(10px);
+}
+
+h1{
+    text-align:center;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+textarea{
+    min-height:80px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+.success{
+    text-align:center;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏃 Coach Santé Cyrille</h1>
+
+<div class="card">
+
+<label>🛌 Heure de coucher</label>
+<input type="time" id="coucher">
+
+<label>⏰ Heure de lever</label>
+<input type="time" id="lever">
+
+<label>⭐ Qualité du sommeil (1 à 10)</label>
+<input type="range" id="sommeil" min="1" max="10" value="5">
+
+<label>⚡ Énergie au réveil (1 à 10)</label>
+<input type="range" id="energie" min="1" max="10" value="5">
+
+<label>😴 Fatigue du soir (1 à 10)</label>
+<input type="range" id="fatigue" min="1" max="10" value="5">
+
+<label>😊 Humeur (1 à 10)</label>
+<input type="range" id="humeur" min="1" max="10" value="5">
+
+<label>😰 Stress (1 à 10)</label>
+<input type="range" id="stress" min="1" max="10" value="5">
+
+<label>🦴 Douleur du dos (0 à 10)</label>
+<input type="range" id="dos" min="0" max="10" value="0">
+
+<label>🚗 Heures de conduite</label>
+<input type="number" id="conduite" step="0.5">
+
+<label>💪 Gainage réalisé</label>
+<select id="gainage">
+<option>Non</option>
+<option>Oui</option>
+</select>
+
+<label>⚖️ Poids du matin (kg)</label>
+<input type="number" id="poids">
+
+<label>🍽️ Alimentation de la journée</label>
+<textarea id="alimentation"></textarea>
+
+<label>📝 Résumé de la journée</label>
+<textarea id="commentaire"></textarea>
+
+</div>
+
+<button onclick="enregistrer()">✅ Enregistrer</button>
+
+<div id="message" class="success"></div>
+
+</div>
+
+<script>
+
+function enregistrer(){
+
+const data = {
+date:new Date().toLocaleDateString(),
+coucher:document.getElementById('coucher').value,
+lever:document.getElementById('lever').value,
+sommeil:document.getElementById('sommeil').value,
+energie:document.getElementById('energie').value,
+fatigue:document.getElementById('fatigue').value,
+humeur:document.getElementById('humeur').value,
+stress:document.getElementById('stress').value,
+dos:document.getElementById('dos').value,
+conduite:document.getElementById('conduite').value,
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
