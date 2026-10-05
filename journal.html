@@ -195,31 +195,63 @@ oninput="document.getElementById('valDos').innerText=this.value">
 
 <script>
 
-function enregistrer(){
+async function enregistrer(){
 
-const data = {
-date:new Date().toLocaleDateString(),
-coucher:document.getElementById('coucher').value,
-lever:document.getElementById('lever').value,
-sommeil:document.getElementById('sommeil').value,
-energie:document.getElementById('energie').value,
-fatigue:document.getElementById('fatigue').value,
-humeur:document.getElementById('humeur').value,
-stress:document.getElementById('stress').value,
-dos:document.getElementById('dos').value,
-conduite:document.getElementById('conduite').value,
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Journal Santé</title>
-</head>
+  const data = {
 
-<body>
+    date:new Date().toLocaleDateString(),
 
-<h1>📅 Journal Santé</h1>
+    coucher:document.getElementById('coucher').value,
+    lever:document.getElementById('lever').value,
 
-<p>Ma deuxième page fonctionne !</p>
+    sommeil:document.getElementById('sommeil').value,
+    energie:document.getElementById('energie').value,
+    fatigue:document.getElementById('fatigue').value,
+    humeur:document.getElementById('humeur').value,
+    stress:document.getElementById('stress').value,
+
+    dos:document.getElementById('dos').value,
+
+    conduite:document.getElementById('conduite').value,
+
+    gainage:document.getElementById('gainage').value,
+
+    poids:document.getElementById('poids').value,
+
+    alimentation:document.getElementById('alimentation').value,
+
+    commentaire:document.getElementById('commentaire').value
+
+  };
+
+  document.getElementById('message').innerHTML =
+  "⏳ Enregistrement en cours...";
+
+  try {
+
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbz-T1THCvwyADoV468PrYjKjtgZ8FBWE-1tW0wfzG0nIQgLp3DHrqd4I2B0-1sAHA4Z/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(data)
+      }
+    );
+
+    document.getElementById('message').innerHTML =
+    "✅ Journée enregistrée";
+
+  } catch(error){
+
+    document.getElementById('message').innerHTML =
+    "❌ Erreur d'enregistrement";
+
+    console.error(error);
+
+  }
+
+}
+
+</script>
 
 </body>
 </html>
