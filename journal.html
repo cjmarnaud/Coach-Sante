@@ -53,13 +53,14 @@ textarea{
 }
 
 button{
-    width:100%;
-    padding:15px;
+    min-width:220px;
+    padding:15px 30px;
     border:none;
-    border-radius:12px;
+    border-radius:30px;
     background:#22c55e;
     color:white;
     font-size:18px;
+    font-weight:bold;
     cursor:pointer;
 }
 
@@ -194,7 +195,11 @@ oninput="document.getElementById('valDos').innerText=this.value">
 
 </div>
 
-<button onclick="enregistrer()">✅ Enregistrer</button>
+<div style="text-align:center;">
+    <button onclick="enregistrer()">
+        ✅ Enregistrer
+    </button>
+</div>
 
 <div id="message" class="success"></div>
 
