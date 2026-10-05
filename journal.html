@@ -215,7 +215,7 @@ window.onload = function() {
 
 }
 
-function enregistrer(){
+async function enregistrer(){
 
   const data = {
 
@@ -243,13 +243,30 @@ function enregistrer(){
 
   };
 
-  google.script.run
-    .withSuccessHandler(function(response){
+  document.getElementById('message').innerHTML =
+      "⏳ Enregistrement en cours...";
 
-      document.getElementById('message').innerHTML = response;
+  try {
 
-    })
-    .enregistrerDonnees(data);
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbz-T1THCvwyADoV468PrYjKjtgZ8FBWE-1tW0wfzG0nIQgLp3DHrqd4I2B0-1sAHA4Z/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(data)
+      }
+    );
+
+    document.getElementById('message').innerHTML =
+      "✅ Journée enregistrée";
+
+  } catch(error){
+
+    document.getElementById('message').innerHTML =
+      "❌ Erreur d'enregistrement";
+
+    console.error(error);
+
+  }
 
 }
 
