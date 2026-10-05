@@ -1,101 +1,189 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Coach Santé</title>
+  <base target="_top">
 
-<style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
 
-body{
-    margin:0;
-    font-family:Arial;
-}
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
 
-.page1{
-    height:100vh;
-    background:#2563eb;
-    color:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
+    .bloc {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-.page2{
-    display:none;
-    padding:20px;
-}
+    h2 {
+      color: #2e7d32;
+    }
 
-button{
-    padding:15px 25px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
-}
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
 
-.boutonAccueil{
-    background:#22c55e;
-    color:white;
-}
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-input, textarea{
-    width:100%;
-    padding:10px;
-    margin-bottom:10px;
-}
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
 
-</style>
+    button {
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    #resultat {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="accueil" class="page1">
+<h1>🏃 Coach Santé Personnel</h1>
 
-<h1>Cyrille ARNAUD</h1>
-<p>Coach Santé Personnel</p>
+<div class="bloc">
+  <h2>Santé</h2>
 
-<a href="journal.html">
-  <button class="boutonAccueil">
-    Commencer ma saisie
-  </button>
-</a>
+  <label>Poids (kg)</label>
+  <input type="number" id="poids">
 
+  <label>Sommeil (heures)</label>
+  <input type="number" id="sommeil">
+
+  <label>Fatigue (0 à 10)</label>
+  <input type="number" min="0" max="10" id="fatigue">
+
+  <label>Stress (0 à 10)</label>
+  <input type="number" min="0" max="10" id="stress">
 </div>
 
-<div id="journal" class="page2">
+<div class="bloc">
+  <h2>Activité Physique</h2>
 
-<h2>Journal du jour</h2>
+  <label>Nombre de pas</label>
+  <input type="number" id="pas">
 
-<label>Qualité du sommeil</label>
-<input type="number">
+  <label>Sport (minutes)</label>
+  <input type="number" id="sport">
 
-<label>Fatigue</label>
-<input type="number">
+  <label>Temps assis (heures)</label>
+  <input type="number" id="assis">
 
-<label>Douleur dos</label>
-<input type="number">
-
-<label>Alimentation</label>
-<textarea></textarea>
-
-<label>Description de la journée</label>
-<textarea></textarea>
-
-<button>Enregistrer</button>
-
+  <label>Temps en voiture (heures)</label>
+  <input type="number" id="voiture">
 </div>
+
+<div class="bloc">
+  <h2>Travail</h2>
+
+  <label>Heures travaillées</label>
+  <input type="number" id="travail">
+</div>
+
+<div class="bloc">
+  <h2>Développement Personnel</h2>
+
+  <label>Lecture (minutes)</label>
+  <input type="number" id="lecture">
+
+  <label>Formation (minutes)</label>
+  <input type="number" id="formation">
+</div>
+
+<div class="bloc">
+  <h2>Notes de la journée</h2>
+
+  <textarea id="notes" placeholder="Exemple : Réunion difficile ce matin, bonne séance de vélo ce soir..."></textarea>
+</div>
+
+<button onclick="enregistrer()">
+✅ Enregistrer ma journée
+</button>
+
+<div id="resultat"></div>
 
 <script>
 
-function ouvrirJournal(){
+function enregistrer() {
 
-document.getElementById("accueil").style.display="none";
-document.getElementById("journal").style.display="block";
+  const data = {
 
+    poids: document.getElementById("poids").value,
+    sommeil: document.getElementById("sommeil").value,
+    fatigue: document.getElementById("fatigue").value,
+    stress: document.getElementById("stress").value,
+    pas: document.getElementById("pas").value,
+    sport: document.getElementById("sport").value,
+    assis: document.getElementById("assis").value,
+    voiture: document.getElementById("voiture").value,
+    travail: document.getElementById("travail").value,
+    lecture: document.getElementById("lecture").value,
+    formation: document.getElementById("formation").value,
+    notes: document.getElementById("notes").value
+
+  };
+
+  document.getElementById("resultat").innerHTML =
+    "⏳ Enregistrement en cours...";
+
+  google.script.run
+    .withSuccessHandler(function(message) {
+
+      document.getElementById("resultat").innerHTML = message;
+
+      document.querySelectorAll("input").forEach(i => i.value = "");
+      document.getElementById("notes").value = "";
+
+    })
+    .withFailureHandler(function(error) {
+
+      document.getElementById("resultat").innerHTML =
+        "❌ Erreur : " + error.message;
+
+    })
+    .enregistrerDonnees(data);
 }
 
 </script>
 
 </body>
 </html>
+``
