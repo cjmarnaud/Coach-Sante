@@ -89,8 +89,18 @@ button:hover{
 <label>⏰ Heure de lever</label>
 <input type="time" id="lever">
 
-<label>⭐ Qualité du sommeil (1 à 10)</label>
-<input type="range" id="sommeil" min="1" max="10" value="5">
+<label>
+⭐ Qualité du sommeil :
+<span id="valSommeil">5</span>/10
+</label>
+
+<input
+type="range"
+id="sommeil"
+min="1"
+max="10"
+value="5"
+oninput="document.getElementById('valSommeil').innerText=this.value">
 
 <label>⚡ Énergie au réveil (1 à 10)</label>
 <input type="range" id="energie" min="1" max="10" value="5">
